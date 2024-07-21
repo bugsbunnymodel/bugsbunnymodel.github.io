@@ -1,45 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92YNKNRNLT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92YNKNRNLT');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - Our Website is Under Construction</title>
+    <title>VideoGameBunny: Towards vision assistants for video games</title>
+    <link rel="stylesheet" href="./static/css/prismer.css">
+    <link rel="stylesheet" href="./static/css/shikun.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .container.blog#first-content {
+            background-color: #E2a3a3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
             background-color: #f0f0f0;
-            color: #333;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #E2a3a3;
+        }
+
+        .videogamebunny {
+            color: #696969;
+            font-family: sans-serif;
+            font-variant: small-caps;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        .abstract {
+            text-align: justify;
+            margin-bottom: 1em;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: #4a4a4a;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .abstract {
+            text-align: justify;
+            margin-bottom: 1em;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .code-link {
+            margin-bottom: 2em;
+        }
+
+        h2 {
+            color: #4a4a4a;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .abstract a,
+        .code-link a {
+            color: #E2a3a3;
+            text-decoration: none;
+        }
+
+        .abstract a:hover,
+        .code-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        #annotation-text-container {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            /* Add this line */
+            font-size: 14px;
+            /* Add this line if you want to change the font size */
+        }
+
+        #annotation-text-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .annotation-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 2px solid #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .annotation-point:hover {
+            background-color: rgba(0, 123, 255, 0.5);
+        }
+
+        .annotation-text {
+            margin-top: 1rem;
+            font-size: inherit;
+            font-family: inherit;
+            line-height: inherit;
+            color: inherit;
+            display: none;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+
+        .json-viewer {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .json-key {
+            color: #881391;
+        }
+
+        .json-string {
+            color: #1a1aa6;
+        }
+
+        .json-number {
+            color: #1c00cf;
+        }
+
+        .json-boolean {
+            color: #0000ff;
+        }
+
+        .json-null {
+            color: #808080;
+        }
+
+
+        .container.blog.main {
+            padding: 20px 0;
+            /* Reduce overall container padding */
+        }
+
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            /* Remove fixed height */
+            margin: 0;
+            /* Remove any margin */
+        }
+
+        .image-container {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            width: 100%;
+            max-width: 95%;
+            /* Increase max-width */
+            margin: 10px auto;
+            /* Add small vertical margin */
         }
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 70vh;
+            /* Limit height to 70% of viewport height */
+            object-fit: contain;
+            display: block;
         }
-        h1 {
-            color: #2c3e50;
-        }
-        p {
-            color: #7f8c8d;
-        }
-        .construction-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+
+        .hard {
+            margin: 10px 0;
+            /* Reduce margin for horizontal rules */
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="construction-icon">🏗️</div>
-        <h1>Our Website is Under Construction</h1>
-        <p>We're working hard to bring you something amazing. Please check back soon!</p>
-        <p>For inquiries, please contact: <a href="mailto:info@example.com">info@example.com</a></p>
+    <div class="container blog" id="first-content">
+        <div class="blog-title">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title"><span class="videogamebunny">BugsBunny</span>: Video game bug detection using
+                        large
+                        multimodal models</h1>
+                    <p class="author">Anonymous Author</p>
+                    <p class="summary">
+                        We present <span class="videogamebunny">BugsBunny</span>, a 4B-parameter large multimodal model
+                        trained for video
+                        game bug detection on a special dataset of 75K image-instruction pairs, including more than
+                        2,000 bug images. <span class="videogamebunny">BugsBunny</span> is capable of detecting various
+                        types of video game bugs, including
+                        graphical bugs and logical inconsistencies.
+                    </p>
+                    <div>
+                        <a href="#" class="button icon" style="background-color: rgba(39, 38, 42, 0.2)">Paper <i
+                                class="far fa-book-open"></i></a>
+                        <a href="https://huggingface.co/datasets/bugsbunnymodel/BugsBunnyData" class="button icon"
+                            style="background-color: rgba(39, 38, 42, 0.2)">Dataset <i class="far fa-code"></i></a>
+                        <a href="https://huggingface.co/bugsbunnymodel/BugsBunny-4B-V1#" class="button icon"
+                            style="background-color: rgba(39, 38, 42, 0.2)">Model <i
+                                class="fa-light fa-face-smiling-hands"></i></a>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Paper Under Review</p>
+                </div>
+            </div>
+
+            <div class="blog-cover">
+                <img class="foreground" src="./static/images/banner.png" alt="BugsBunny banner">
+                <img class="background" src="./static/images/banner.png" alt="BugsBunny banner background">
+            </div>
+        </div>
     </div>
+
+
+    <div class="container blog main first " id="blog-main">
+        <h1 class="section">
+            Abstract
+        </h1>
+        <p class="abstract">
+            Large multimodal models, capable of processing and integrating diverse data types such as text
+            and images, offer
+            substantial benefits in tasks requiring complex data interpretation and human-like reasoning,
+            demonstrating significant
+            potential as visual assistants across various domains. Video game bug detection presents unique
+            challenges that
+            traditional software testing methods struggle to address, particularly in reasoning about
+            logical inconsistencies rather
+            than just technical errors.
+            In this paper, we introduce <span class="videogamebunny">BugsBunny</span>, a large multimodal
+            model designed for video game bug
+            detection.
+            <span class="videogamebunny">BugsBunny</span> can detect issues that are not flagged by
+            traditional software engineering error
+            signals, such as illogical
+            behaviors within game environments (e.g., horses flying in the air or characters walking through
+            solid walls).
+            Our comprehensive study explores the potential application of <span class="videogamebunny">BugsBunny</span>
+            in
+            real-world bug
+            detection scenarios, tested
+            on a dataset of 500 images of video game bugs collected from various sources, and compares its
+            performance with
+            state-of-the-art proprietary models such as GPT-4o and Gemini-1.5-Pro.
+        </p>
+
+    </div>
+
+
+
+
+    <footer>
+        <p>This website is using the template of <a href="https://shikun.io/projects/prismer">Prismer</a> by Shikun
+            Liu.</p>
+    </footer>
+
+
+    <script>
+        const textContainer = document.getElementById('annotation-text-container');
+        document.querySelectorAll('.annotation-point').forEach(point => {
+            point.addEventListener('click', function () {
+                const text = this.getAttribute('data-text');
+                textContainer.textContent = text;
+                textContainer.classList.remove('show');
+                void textContainer.offsetWidth; // Trigger reflow
+                textContainer.classList.add('show');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const textContainer = document.getElementById('annotation-text-container');
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide-content');
+            let currentSlide = 0;
+
+            // Annotation point functionality
+            document.querySelectorAll('.annotation-point').forEach(point => {
+                point.addEventListener('click', function () {
+                    const text = this.getAttribute('data-text');
+                    textContainer.textContent = text;
+                    textContainer.classList.remove('show');
+                    void textContainer.offsetWidth; // Trigger reflow
+                    textContainer.classList.add('show');
+                });
+            });
+
+            // Slide functionality
+            function showSlide(index) {
+                slides[currentSlide].style.display = 'none';
+                dots[currentSlide].classList.remove('active');
+
+                currentSlide = index;
+
+                slides[currentSlide].style.display = 'block';
+                dots[currentSlide].classList.add('active');
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+
+            // JSON formatting function
+            function formatJSON(obj, indent = 0) {
+                if (obj === null) return '<span class="json-null">null</span>';
+                if (typeof obj === 'boolean') return '<span class="json-boolean">' + obj + '</span>';
+                if (typeof obj === 'number') return '<span class="json-number">' + obj + '</span>';
+                if (typeof obj === 'string') return '<span class="json-string">"' + obj + '"</span>';
+                if (Array.isArray(obj)) {
+                    let result = '[\n';
+                    obj.forEach((item, index) => {
+                        result += '  '.repeat(indent + 1) + formatJSON(item, indent + 1);
+                        if (index < obj.length - 1) result += ',';
+                        result += '\n';
+                    });
+                    return result + '  '.repeat(indent) + ']';
+                }
+                if (typeof obj === 'object') {
+                    let result = '{\n';
+                    Object.keys(obj).forEach((key, index) => {
+                        result += '  '.repeat(indent + 1) + '<span class="json-key">"' + key + '"</span>: ' + formatJSON(obj[key], indent + 1);
+                        if (index < Object.keys(obj).length - 1) result += ',';
+                        result += '\n';
+                    });
+                    return result + '  '.repeat(indent) + '}';
+                }
+            }
+
+            // Function to fetch and render JSON
+            function fetchAndRenderJSON(jsonPath, elementId) {
+                fetch(jsonPath)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = formatJSON(data);
+                    })
+                    .catch(error => {
+                        console.error('Error loading JSON:', error);
+                        document.getElementById(elementId).innerHTML = 'Error loading JSON data';
+                    });
+            }
+
+            // Render JSON for each viewer
+            fetchAndRenderJSON('./static/json_data/1.json', 'json-viewer');
+            fetchAndRenderJSON('./static/json_data/2.json', 'json-viewer-D');
+            fetchAndRenderJSON('./static/json_data/3.json', 'json-viewer-E');
+        });
+    </script>
+
 </body>
+
 </html>
